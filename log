@@ -1,7 +1,10 @@
 18/02 - 0.0.0
 - Project re-start
 - Modify HTML from template. Abandon Svelte for jQuery at this stage
-09/03 - 0.0.1
+09/03 - 0.1.0
 - Home and About page (with DOM manipulation for common html)
 - Dark/Light mode, manipulate via JS and CSS functions.
 - Hosted on github (without domain).
+10/03 - 0.1.1
+- Fix grammar mistakes.
+- Doge some unnecessary parts.
