@@ -1,10 +1,15 @@
 /**Common HTML generator */
 const header = document.getElementById("header");
 header.innerHTML = `
-<h2><a href="index.html">Nguyên Long</a></h2>
+<h2 class="name">
+    <a href="/">Nguyên Long</a>
+</h2>
 <nav class="links">
 	<ul>
-		<li><a href="about.html" class="header" id="w_about">About-CV</a></li>
+		<li><a href="/about" class="header" id="w_about">
+            <span class="lang lang-en">About-CV</span>
+            <span class="lang lang-vi">Về mình</span>
+        </a></li>
 		<!-- <li><a href="#" class="header" id="w_blog">Blog</a></li>
 		<li><a href="#" class="header" id="w_project">Project</a></li>
 		<li><a href="#" class="header" id="w_hobby">Hobby</a></li> 
@@ -13,6 +18,14 @@ header.innerHTML = `
 </nav>
 <nav class="control">
 	<ul>
+    <li>
+        <select id="langSelector">
+            <option value="en">🌎English</option>
+            <option value="vi">🌏Tiếng Việt</option>
+            <!--<option value="de">🌍Deutsch</option> -->
+            <!--<option value="tok">🌍toki pona</option> -->
+        </select>
+    </li>
 		<li class="darklight">
             <a type="button" data-theme-toggle></a>
 		</li>
@@ -44,8 +57,9 @@ menu.innerHTML = `
         <ul class="links">
             <li>
                 <h3>
-                    <a href="about.html" class="header" id="w_about">
-                        About-CV
+                    <a href="/about" class="header" id="w_about">
+                        <span class="lang lang-en">About-CV</span>
+                        <span class="lang lang-vi">Về mình</span>
                     </a>
                 </h3>
             </li>
@@ -87,11 +101,6 @@ menu.innerHTML = `
         </ul>
     </section> -->`
 
-const blurb = document.getElementById("blurb");
-blurb.innerHTML = `
-<h2 id="w_disclaimer">Disclaimer</h2>
-<p id="w_disclaimerphrase0">The website is written with truth the whole truth and nothing but the truth (except when it is not). Proceed with your own risk! </p>
-<p id="w_disclaimerphrase1">Just kidding, thank you for visiting here. </p>`
 const footer = document.getElementById("footer");
 footer.innerHTML = `
 <ul class="icons">
@@ -106,7 +115,12 @@ footer.innerHTML = `
 	</li>
 	<!-- <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> -->
 </ul>
-<p class="copyright">&copy; doanducnguyenlong.com (${new Date().getFullYear()}); Design: <a href="http://html5up.net">HTML5 UP</a></p>`
+<p class="copyright">&copy; doanducnguyenlong.com (${new Date().getFullYear()}); <span class="lang lang-en">Design:</span><span class="lang lang-vi">Thiết kế:</span> <a href="http://html5up.net">HTML5 UP</a></p>`
+
+const endpart =  document.getElementById("endpart")
+endpart.innerHTML = `
+<span class="lang lang-en">End of this part</span>
+<span class="lang lang-vi">Hết phần</span>`
 
 /**https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f */
 function calculateSettingAsThemeString({ localStorageTheme, sessionStorageTheme, systemSettingDark }) {

@@ -8,3 +8,11 @@
 10/03 - 0.1.1
 - Fix grammar mistakes.
 - Doge some unnecessary parts.
+15/03 - 0.1.2
+- Thêm tiếng Việt
+- Bỏ vài phần thừa
+- Connect to doanducnguyenlong.com
+18/03 - 0.1.3
+- Hoàn thiện tiếng Việt và tạo chỗ cho các tiếng khác sau này (span)
+- Rearrange folder structure
+- Thêm tạm favicon (chữ Nôm)
