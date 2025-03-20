@@ -18,17 +18,17 @@ header.innerHTML = `
 </nav>
 <nav class="control">
 	<ul>
-    <li>
-        <select id="langSelector">
-            <option value="en">🌎English</option>
-            <option value="vi">🌏Tiếng Việt</option>
-            <!--<option value="de">🌍Deutsch</option> -->
-            <!--<option value="tok">🌍toki pona</option> -->
-        </select>
-    </li>
-		<li class="darklight">
+        <li class="darklight">
             <a type="button" data-theme-toggle></a>
-		</li>
+        </li>
+        <li>
+            <select id="langSelector">
+                <option value="en">🌎English</option>
+                <option value="vi">🌏Tiếng Việt</option>
+                <!--<option value="de">🌍Deutsch</option> -->
+                <!--<option value="tok">🌍toki pona</option> -->
+            </select>
+    </li>
 	</ul>
 </nav>
 <nav class="main">
@@ -56,6 +56,12 @@ menu.innerHTML = `
     <section>
         <ul class="links">
             <li>
+                <h3>
+                    <a href="/" class="header" id="w_home">
+                        <span class="lang lang-en">Home</span>
+                        <span class="lang lang-vi">Trang chính</span>
+                    </a>
+                </h3>
                 <h3>
                     <a href="/about" class="header" id="w_about">
                         <span class="lang lang-en">About-CV</span>
@@ -122,6 +128,41 @@ endpart.innerHTML = `
 <span class="lang lang-en">End of this part</span>
 <span class="lang lang-vi">Hết phần</span>`
 
+function showhide(id, isshow) {
+    const content_w_id = document.getElementById("c_"+id);
+    content_w_id.style.display = (isshow ? "" : "none");
+}
+
+const supportedLang = ["en", "vi"] //redeclare to avoid sharing variable between files.
+const hidedetail = document.getElementsByClassName("sh")
+for (let i = 0; i < hidedetail.length; i+=1) {
+    hidedetail[i].innerHTML = `<span class="lang lang-en">[more]</span>
+    <span class="lang lang-vi">[thêm]</span>`
+    hidedetail[i].addEventListener('click', function() {
+        for (let j = 0; j < supportedLang.length; j+=1) {
+            let cur_id = supportedLang[j] + "_" + hidedetail[i].id;
+            let content_w_id = document.getElementById(cur_id);      
+            if (content_w_id.classList[2] === 'hide') {
+                content_w_id.classList.remove('hide');
+                if (hidedetail[i].innerText === "[more]") {
+                    hidedetail[i].innerText = "[less]"
+                }
+                else if (hidedetail[i].innerText === "[thêm]") {
+                    hidedetail[i].innerText = "[bớt]"
+                } 
+            } else {
+                content_w_id.classList.add('hide');
+                if (hidedetail[i].innerText === "[less]") {
+                    hidedetail[i].innerText = "[more]"
+                }
+                else if (hidedetail[i].innerText === "[bớt]") {
+                    hidedetail[i].innerText = "[thêm]"
+                }
+            }
+        }
+      });
+}
+
 /**https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f */
 function calculateSettingAsThemeString({ localStorageTheme, sessionStorageTheme, systemSettingDark }) {
     if (sessionStorageTheme !== null) { //firefox not saving localStorage between files
@@ -153,6 +194,7 @@ function calculateSettingAsThemeString({ localStorageTheme, sessionStorageTheme,
   const localStorageTheme = localStorage.getItem("theme");
   const sessionStorageTheme = sessionStorage.getItem("theme");
   const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+  //take all 3 sources for current setting
   let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, sessionStorageTheme, systemSettingDark });
   updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
   updateThemeOnHtmlEl({ theme: currentThemeSetting });

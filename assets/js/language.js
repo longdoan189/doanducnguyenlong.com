@@ -11,7 +11,7 @@ function changeLanguage(languageCode) {
         }
     });
 }
-const selector = document.getElementById('langSelector');
+const selector = document.getElementById('langSelector'); //only change on demand, js
 selector.addEventListener('change', function (evt) {
     changeLanguage(this.value);
 });
