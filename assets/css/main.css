@@ -90,6 +90,9 @@ input, select, textarea {
 	font-size: 1.2em;
 	cursor: pointer;
 }
+.bold {
+	font-weight: bold !important;
+}
 
 /*hide show control **/
 .hide {

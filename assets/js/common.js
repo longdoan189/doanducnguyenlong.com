@@ -1,4 +1,6 @@
 /**Common HTML generator */
+const listofPath = ['/about']
+const currentpath = window.location.pathname;
 const header = document.getElementById("header");
 header.innerHTML = `
 <h2 class="name">
@@ -6,9 +8,9 @@ header.innerHTML = `
 </h2>
 <nav class="links">
 	<ul>
-		<li><a href="/about" class="header" id="w_about">
+		<li><a href="${listofPath[0]}" class="header ${(listofPath[0]+'/' === currentpath) ? ' bold' : ''}" id="w_about">
             <span class="lang lang-en">About-CV</span>
-            <span class="lang lang-vi">Về mình</span>
+            <span class="lang lang-vi">Về Long</span>
         </a></li>
 		<!-- <li><a href="#" class="header" id="w_blog">Blog</a></li>
 		<li><a href="#" class="header" id="w_project">Project</a></li>
@@ -56,18 +58,14 @@ menu.innerHTML = `
     <section>
         <ul class="links">
             <li>
-                <h3>
-                    <a href="/" class="header" id="w_home">
-                        <span class="lang lang-en">Home</span>
-                        <span class="lang lang-vi">Trang chính</span>
-                    </a>
-                </h3>
-                <h3>
-                    <a href="/about" class="header" id="w_about">
-                        <span class="lang lang-en">About-CV</span>
-                        <span class="lang lang-vi">Về mình</span>
-                    </a>
-                </h3>
+                <a href="/" class="header ${('/' === currentpath) ? ' bold' : ''}" id="w_home">
+                    <span class="lang lang-en">Home</span>
+                    <span class="lang lang-vi">Trang chính</span>
+                </a>
+                <a href="${listofPath[0]}" class="header ${(listofPath[0]+'/' === currentpath) ? ' bold' : ''}" id="w_about">
+                    <span class="lang lang-en">About-CV</span>
+                    <span class="lang lang-vi">Về Long</span>
+                </a>
             </li>
             <!-- <li>
                 <h3>
@@ -127,41 +125,6 @@ const endpart =  document.getElementById("endpart")
 endpart.innerHTML = `
 <span class="lang lang-en">End of this part</span>
 <span class="lang lang-vi">Hết phần</span>`
-
-function showhide(id, isshow) {
-    const content_w_id = document.getElementById("c_"+id);
-    content_w_id.style.display = (isshow ? "" : "none");
-}
-
-const supportedLang = ["en", "vi"] //redeclare to avoid sharing variable between files.
-const hidedetail = document.getElementsByClassName("sh")
-for (let i = 0; i < hidedetail.length; i+=1) {
-    hidedetail[i].innerHTML = `<span class="lang lang-en">[more]</span>
-    <span class="lang lang-vi">[thêm]</span>`
-    hidedetail[i].addEventListener('click', function() {
-        for (let j = 0; j < supportedLang.length; j+=1) {
-            let cur_id = supportedLang[j] + "_" + hidedetail[i].id;
-            let content_w_id = document.getElementById(cur_id);      
-            if (content_w_id.classList[2] === 'hide') {
-                content_w_id.classList.remove('hide');
-                if (hidedetail[i].innerText === "[more]") {
-                    hidedetail[i].innerText = "[less]"
-                }
-                else if (hidedetail[i].innerText === "[thêm]") {
-                    hidedetail[i].innerText = "[bớt]"
-                } 
-            } else {
-                content_w_id.classList.add('hide');
-                if (hidedetail[i].innerText === "[less]") {
-                    hidedetail[i].innerText = "[more]"
-                }
-                else if (hidedetail[i].innerText === "[bớt]") {
-                    hidedetail[i].innerText = "[thêm]"
-                }
-            }
-        }
-      });
-}
 
 /**https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f */
 function calculateSettingAsThemeString({ localStorageTheme, sessionStorageTheme, systemSettingDark }) {

@@ -18,3 +18,9 @@
 - Thêm tạm favicon (chữ Nôm)
 19/03 - 0.1.4
 - Add show/hide for some long lines
+20/03 - 0.1.5
+- Change favicon to abstract
+- Trim some part
+27/03 - 0.1.6
+- Bold for active page
+- Restruct some codes
