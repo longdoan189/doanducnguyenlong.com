@@ -30,38 +30,3 @@ if (!lang) { //navigator is not exist -> take from storage. If not then default 
 }
 changeLanguage(lang);
 selector.selectedIndex = Array.from(selector.options).map(opt => opt.value).indexOf(lang);
-
-function showhide(id, isshow) {
-    const content_w_id = document.getElementById("c_"+id);
-    content_w_id.style.display = (isshow ? "" : "none");
-}
-
-const supportedLang = ["en", "vi"] //redeclare to avoid sharing variable between files.
-const hidedetail = document.getElementsByClassName("sh")
-for (let i = 0; i < hidedetail.length; i+=1) {
-    hidedetail[i].innerHTML = `<span class="lang lang-en">[more]</span>
-    <span class="lang lang-vi">[thêm]</span>`
-    hidedetail[i].addEventListener('click', function() {
-        for (let j = 0; j < supportedLang.length; j+=1) {
-            let cur_id = supportedLang[j] + "_" + hidedetail[i].id;
-            let content_w_id = document.getElementById(cur_id);      
-            if (content_w_id.classList[2] === 'hide') {
-                content_w_id.classList.remove('hide');
-                if (hidedetail[i].innerText === "[more]") {
-                    hidedetail[i].innerText = "[less]"
-                }
-                else if (hidedetail[i].innerText === "[thêm]") {
-                    hidedetail[i].innerText = "[bớt]"
-                } 
-            } else {
-                content_w_id.classList.add('hide');
-                if (hidedetail[i].innerText === "[less]") {
-                    hidedetail[i].innerText = "[more]"
-                }
-                else if (hidedetail[i].innerText === "[bớt]") {
-                    hidedetail[i].innerText = "[thêm]"
-                }
-            }
-        }
-      });
-}
